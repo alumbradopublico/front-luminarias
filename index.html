@@ -186,31 +186,29 @@
         #btn-logout,
         #admin-controls button {
             width: 180px;
-            /* Ancho fijo para ambos */
             padding: 10px 0;
-            /* Mismo relleno vertical */
             font-size: 0.9rem;
-            /* Mismo tamaño de letra */
             text-align: center;
-            /* Texto centrado */
             display: flex;
-            /* Para centrar el icono y texto */
             justify-content: center;
             align-items: center;
             gap: 8px;
-            /* Espacio entre icono y texto */
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            /* Sombra suave idéntica */
         }
 
-        /* Pequeño ajuste para el icono dentro del botón azul */
+
         #admin-controls button span {
             font-size: 1.1rem;
         }
 
         #admin-panel .grupo+div {
             display: flex;
-            gap: 10px;
+            gap: 20px;
+        }
+
+        #admin-panel button {
+            width: 120px;
+
         }
 
         @media (max-width: 600px) {
@@ -236,8 +234,8 @@
 
             #btn-logout,
             #admin-controls button {
-                width: auto;        
-                min-width: 120px;    
+                width: auto;
+                min-width: 120px;
                 padding: 8px 12px;
                 height: 40px;
                 font-size: 0.8rem;
@@ -246,12 +244,22 @@
             }
 
             #admin-controls {
-                left: 5px; 
+                left: 5px;
             }
 
             #titulo {
                 margin-top: 30px;
             }
+
+            #newFoto,
+            #newMunicipio,
+            #newModelo,
+            #newPotencia {
+                width: 75%;
+                max-width: 100%;
+                margin-top: 10px;
+            }
+
 
 
         }
@@ -295,7 +303,7 @@
         <div id="admin-panel"
             style="display: none; background: #e8f0fe; padding: 20px; margin: 20px auto; border-radius: 10px; border: 1px dashed #0056b3; max-width: 500px; position: relative;">
 
-            <h3 style="color: #0056b3; margin-top: 0;">📤 Cargar nueva luminaria</h3>
+            <h3 style="color: #0056b3; margin-top: 0;">📤 Cargar luminaria</h3>
 
             <div class="grupo">
                 <select id="newMunicipio" style="background: white;">
@@ -328,7 +336,7 @@
                 <input type="file" id="newFoto" accept="image/*" style="background: white; padding: 10px;">
             </div>
 
-            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+            <div style="justify-content: center; margin-top: 15px;">
                 <button id="btn-submit" onclick="procesarFormulario()"
                     style="background-color: #0056b3; color: white;">Guardar</button>
 
