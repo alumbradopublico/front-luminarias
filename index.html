@@ -39,7 +39,6 @@
             display: inline-block
         }
 
-        /* Estilo para el lightbox */
         #lightbox {
             display: none;
             position: fixed;
@@ -83,7 +82,6 @@
             width: 100%;
         }
 
-        /* Estilo para inputs y select */
         select,
         input {
             width: 40%;
@@ -127,7 +125,6 @@
             margin-top: -50px;
         }
 
-        /* --- PEQUEÑO AGREGADO PARA EL BOTÓN DE LOGIN (Siguiendo tu línea) --- */
         button {
             padding: 10px 20px;
             background-color: #def5f5;
@@ -142,7 +139,6 @@
             background-color: #cceeee;
         }
 
-        /* Ocultar la app al inicio */
         #app-principal {
             display: none;
         }
@@ -167,33 +163,44 @@
 
         }
 
-        /* Estilo para ubicar el botón de Cargar debajo del de Cerrar Sesión */
         #admin-controls {
             position: absolute;
-            top: 80px;  /* 20px del botón de arriba + su altura + un espacio */
+            top: 80px;
+            /* 20px del botón de arriba + su altura + un espacio */
             right: 20px;
-            z-index: 100; /* Para que quede por encima de todo */
+            z-index: 100;
+            /* Para que quede por encima de todo */
         }
 
         /* Ajuste visual del botón para que combine mejor en la esquina */
         #admin-controls button {
-            margin-top: 0; /* Quitamos margen que tenía antes */
-            font-size: 0.8rem; /* Un poco más chico para la esquina */
+            margin-top: 0;
+            /* Quitamos margen que tenía antes */
+            font-size: 0.8rem;
+            /* Un poco más chico para la esquina */
             padding: 8px 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave para destacar */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Sombra suave para destacar */
         }
 
         #btn-logout,
         #admin-controls button {
-            width: 180px;           /* Ancho fijo para ambos */
-            padding: 10px 0;        /* Mismo relleno vertical */
-            font-size: 0.9rem;      /* Mismo tamaño de letra */
-            text-align: center;     /* Texto centrado */
-            display: flex;          /* Para centrar el icono y texto */
+            width: 180px;
+            /* Ancho fijo para ambos */
+            padding: 10px 0;
+            /* Mismo relleno vertical */
+            font-size: 0.9rem;
+            /* Mismo tamaño de letra */
+            text-align: center;
+            /* Texto centrado */
+            display: flex;
+            /* Para centrar el icono y texto */
             justify-content: center;
             align-items: center;
-            gap: 8px;               /* Espacio entre icono y texto */
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave idéntica */
+            gap: 8px;
+            /* Espacio entre icono y texto */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Sombra suave idéntica */
         }
 
         /* Pequeño ajuste para el icono dentro del botón azul */
@@ -201,42 +208,45 @@
             font-size: 1.1rem;
         }
 
+        #admin-panel .grupo+div {
+            display: flex;
+            gap: 10px;
+        }
+
         @media (max-width: 600px) {
-            
-            /* 1. Ajustar los botones de Admin (que no queden flotando arriba tapando todo) */
-            #btn-logout, 
+
+            #btn-logout,
             #admin-controls {
                 position: absolute;
-                top: 15px; 
-                width: auto;       
-                margin: 0; 
-               
+                top: 15px;
+                width: auto;
+                margin: 0;
+
             }
 
             #admin-controls {
-                left: 10px;        
-                right: auto;      
+                left: 10px;
+                right: auto;
             }
 
             #btn-logout {
-                right: 10px;     
+                right: 10px;
                 left: auto;
             }
 
-            /* 4. Ajustes visuales para que sean más compactos */
             #btn-logout,
             #admin-controls button {
-                width: auto;        /* Que el botón abrace al texto */
-                font-size: 0.8rem;  /* Letra un poco más chica */
-                padding: 8px 12px;  
+                width: 130px;
+                height: 40px;
+                font-size: 0.8rem;
+                padding: 8px 12px;
             }
 
-            /* 5. IMPORTANTE: Bajamos el logo para que los botones no lo tapen */
             #titulo {
                 margin-top: 30px;
             }
 
-            
+
         }
     </style>
 </head>
@@ -314,7 +324,7 @@
             <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
                 <button id="btn-submit" onclick="procesarFormulario()"
                     style="background-color: #0056b3; color: white;">Guardar</button>
-                
+
                 <button onclick="toggleAdminPanel()" style="background-color: #ccc; color: black;">Cancelar</button>
             </div>
 
@@ -363,7 +373,7 @@
         // Configuración de URLs (Asegúrate que coincidan con tu Backend)
         const BASE_URL = 'https://api-luminarias.onrender.com';
         const API_URL_LUMINARIAS = `${BASE_URL}/luminarias`;
-        const API_URL_LOGIN = `${BASE_URL}/login`;          
+        const API_URL_LOGIN = `${BASE_URL}/login`;
 
         // --- INICIO: VERIFICAR SESIÓN ---
         document.addEventListener('DOMContentLoaded', () => {
@@ -531,7 +541,7 @@
             // Cambiar aspecto del botón Guardar
             const btnSubmit = document.getElementById('btn-submit');
             btnSubmit.innerText = "🔄 Actualizar Luminaria";
-            btnSubmit.style.backgroundColor = "#ffcc00"; // Amarillo
+            btnSubmit.style.backgroundColor = "#ffcc00";
             btnSubmit.style.color = "black";
 
             // Abrir panel si está cerrado
