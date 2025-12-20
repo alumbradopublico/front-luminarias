@@ -268,6 +268,16 @@
             input, select {
                 font-size: 1.2rem !important; /* Letra bien grande */
                 padding: 12px !important;     /* Más espacio para el dedo */
+                width: 70% !important;      /* Inputs más anchos */
+            }
+
+            #btnLogin {
+                width: 60% !important;       
+                font-size: 1.1rem !important; /* Letra MUY grande */
+                padding: 15px !important;    /* Más gordito para el dedo */
+                margin-top: 20px !important; /* Separado de la contraseña */
+                font-weight: bold;           /* Letra en negrita */
+            
             }
 
 
@@ -294,7 +304,7 @@
         <div class="grupo" style="margin-top: 20px;">
             <input type="text" id="loginUser" placeholder="Usuario">
             <input type="password" id="loginPass" placeholder="Contraseña">
-            <button onclick="iniciarSesion()">Ingresar</button>
+            <button id="btnLogin" onclick="iniciarSesion()">Ingresar</button>
         </div>
         <p id="error-msg" style="color: red; display: none; font-size: 0.8rem;">Credenciales incorrectas</p>
     </div>
@@ -454,28 +464,30 @@
             document.getElementById('app-principal').style.display = 'block';
 
             const rol = localStorage.getItem('rol_edesur');
-            const municipioUsuario = localStorage.getItem('municipio_edesur'); // Recuperamos el dato
+            const municipioUsuario = localStorage.getItem('municipio_edesur');
 
-            // Mostrar controles de admin solo si es admin
+            
+            if (rol === 'admin' || rol === 'empleado') {
+                const select = document.getElementById('searchMunicipio');
+                select.disabled = false;        
+                select.value = "";              
+                select.style.backgroundColor = "white"; 
+            } else {
+                
+                const select = document.getElementById('searchMunicipio');
+                if (municipioUsuario && municipioUsuario !== "undefined") {
+                    select.value = municipioUsuario;
+                    select.disabled = true;     
+                    select.style.backgroundColor = "#e9ecef";
+                }
+            }
+
             if (rol === 'admin') {
                 document.getElementById('admin-controls').style.display = 'block';
             } else {
                 document.getElementById('admin-controls').style.display = 'none';
                 document.getElementById('admin-panel').style.display = 'none';
-                const select = document.getElementById('searchMunicipio');
-
-                if (municipioUsuario && municipioUsuario !== "undefined") {
-                    // 1. Forzamos que el select elija su municipio
-                    select.value = municipioUsuario;
-
-                    // 2. Deshabilitamos el select para que no lo pueda cambiar (se pone gris)
-                    select.disabled = true;
-
-                    // 3. (Opcional) Visualmente que se note que está fijo
-                    select.style.backgroundColor = "#e9ecef";
-                }
             }
-
 
             cargarDatosDeMongo();
         }
